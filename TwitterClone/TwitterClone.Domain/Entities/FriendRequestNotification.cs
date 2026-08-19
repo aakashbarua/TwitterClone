@@ -15,7 +15,13 @@ namespace TwitterClone.Domain.Entities
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
-            return $"{baseRecord}  ChildEntity =>  Notification Type : {Type} ,Message :{Message}, IsRead :{Isread},LikeBy:{LikeByUserId}";
+            return $"{baseRecord}  ChildEntity =>  Notification Type : {Type} ," +
+                $"Message :{Message}, IsRead :{Isread},FriendRequestBy:{RequestedByUserId}";
+        }
+
+        public override string GetMessage()
+        {
+            return $"You get Friend Request From Uder :{RequestedByUserId}";
         }
     
     }
