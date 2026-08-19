@@ -1,41 +1,40 @@
 ﻿namespace TwitterClone.Domain.Entities
 {
-    public abstract class Notification : BaseEntity
+    public class Notification
     {
+        private Guid _id;
         private Guid _userId;
         private string _type;
-        private string _message;
+        private string _description;
+        private DateTime _createdAt;
+        private DateTime _updatedAt;
+        private string _createdBy;
+        private string _updatedBy;
         private bool _isRead;
-        public Notification(string notificationtype)
+
+
+
+        public Notification(Guid userId, string type, string description, string createdBy, bool isRead)
         {
-
-            _type = notificationtype;
-            
+            _id = Guid.NewGuid();
+            _createdAt= DateTime.UtcNow;
+            _userId = userId;
+            _type = type;
+            _description = description;
+            _createdBy = createdBy;
+            _isRead = isRead;
         }
 
-        public Guid UserId 
-        { 
-            get { return _userId; }
-            set { _userId = value; }    
-        }
-        public string Type 
-        { 
-            get { return _type; }
-            set { _type = value; }
-        }
-        protected string Message 
-        {
-            get { return _message; }
-            set { _message = value; }
-        }
-        public bool Isread { get { return _isRead; } set { _isRead = value; } }
+        public Guid Id { get { return _id; } }
+        public Guid UserId { get { return _userId; } }
+        public string Type { get { return _type; } }
+        public string Description { get { return _description; } }
+        public DateTime CreateAt { get { return _createdAt; } }
+        public DateTime UpdatedAt { get { return _updatedAt; } }
 
-        public string GetNotification ()
-        { 
-            return $" User Id :{UserId}, NotificationType : {Type} ";
-        
-        }
+        public string CreatedBy { get { return _createdBy; } }
+        public string UpdatedBy { get { return _updatedBy; } }
+        public bool IsRead { get { return _isRead; } }
 
-        public abstract string GetMessage();
     }
 }
